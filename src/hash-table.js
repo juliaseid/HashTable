@@ -18,12 +18,14 @@ export default class HashTable {
   get(key, remove = false) {
     const element = this.hash(key);
     const bucket = this.array[element];
+    console.log(bucket);
     if (bucket != undefined) {
       for (let i = 0; i < bucket.length; i++) {
         if (bucket[i][0] === key) {
           if(remove) {
             let v = bucket.splice(i, 1); 
-            return ("We removed " + v[0]);
+            console.log(v);
+            return true;
           }
           return bucket[i][1];
         }
@@ -38,3 +40,13 @@ export default class HashTable {
     
 }
     
+
+// function hash(key) {
+//   let hash = 5381;
+//   let totalLetters = key.length;
+
+//   while(totalLetters) {
+//     hash = (hash * 33) ^ key.charCodeAt(--totalLetters);
+//   }
+//   return hash >>> 0;
+// }
