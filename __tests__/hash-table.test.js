@@ -22,14 +22,24 @@ describe('HashTable', () => {
     expect(hashTable.array[9]).toEqual([["John", "Lead Singer"]]);
   });
 
-  test ('should correctly gety a key-value pair from a hash table', () => {
+  test ('should correctly get a key-value pair from a hash table', () => {
     hashTable.set("John", "Lead Singer");
     hashTable.set("Jane", "Fan");
     expect(hashTable.get("John")).toEqual("Lead Singer");
   });
 
-  test('should return null if the bucket has no values', () => {
+  test('should return null if the bucket has no values, or if that specific value does not exist', () => {
     expect(hashTable.get("John")).toEqual(null);
   });
-  
+
+  test('should return false if a key-value pair does not exist', () => {
+    expect(hashTable.remove("Peter")).toEqual(null);
+  });
+
+  test('should properly remove a key-value pair from the hashTable', () => {
+    hashTable.set("Billy Shears", " fake Paul");
+    // hashTable.remove("Billy Shears");
+    expect(hashTable.remove("Billy Shears")).toEqual("We removed Billy Shears, fake Paul");
+  });
+
 });
